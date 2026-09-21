@@ -1,0 +1,2052 @@
+/* =========================================================
+   ОСНОВА
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #21191f;
+    color: #f8e8ea;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+:root {
+    --pink: #d78494;
+    --pink-light: #efb5be;
+    --pink-dark: #9e5665;
+
+    --dark: #21191f;
+    --dark-soft: #35242b;
+
+    --paper: #f1e0d2;
+    --paper-dark: #d9bdab;
+    --paper-text: #513a3d;
+
+    --line: rgba(239, 181, 190, .30);
+    --glass: rgba(32, 22, 28, .70);
+
+    --shadow:
+        0 30px 80px rgba(0, 0, 0, .42);
+}
+
+
+/* =========================================================
+   ФОН
+========================================================= */
+
+.site-background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+
+    background-color: #21191f;
+
+    background-image:
+        url("image/background.jpg");
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transform: scale(1.015);
+}
+
+.site-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(220, 135, 150, .15),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            rgba(27, 18, 23, .45),
+            rgba(27, 18, 23, .88)
+        );
+}
+
+
+/* =========================================================
+   ПРИЛОЖЕНИЕ
+========================================================= */
+
+#app {
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+}
+
+.screen {
+    min-height: 100vh;
+
+    padding:
+        85px 18px
+        45px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    animation:
+        screenAppear
+        .65s
+        ease
+        both;
+}
+
+.is-hidden {
+    display: none !important;
+}
+
+@keyframes screenAppear {
+    from {
+        opacity: 0;
+        transform:
+            translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   ОБЩИЕ КАРТОЧКИ
+========================================================= */
+
+.glass-card {
+    width: min(860px, 100%);
+    margin: auto;
+
+    padding:
+        55px 32px;
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius:
+        28px;
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(13px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+.eyebrow {
+    color: var(--pink-light);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .55em;
+}
+
+.button {
+    border-radius:
+        999px;
+
+    padding:
+        13px 29px;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease,
+        opacity .25s ease;
+}
+
+.button-primary {
+    border:
+        1px solid
+        rgba(255, 255, 255, .12);
+
+    color:
+        #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e69aa7,
+            #b75f6e
+        );
+
+    box-shadow:
+        0 10px 28px
+        rgba(210, 110, 125, .24);
+}
+
+.button-primary:hover:not(:disabled) {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 15px 38px
+        rgba(210, 110, 125, .38);
+}
+
+.button-primary:disabled {
+    opacity: .38;
+}
+
+.button-secondary {
+    border:
+        1px solid
+        rgba(239, 181, 190, .58);
+
+    color:
+        #f7e2e5;
+
+    background:
+        rgba(0, 0, 0, .12);
+}
+
+.button-secondary:hover {
+    background:
+        rgba(216, 133, 148, .17);
+}
+
+
+/* =========================================================
+   СЕРДЕЧКИ
+========================================================= */
+
+.heart-layer {
+    position: fixed;
+    inset: 0;
+
+    z-index: 10;
+
+    pointer-events:
+        none;
+
+    overflow:
+        hidden;
+}
+
+.heart-particle {
+    position: absolute;
+
+    bottom: -30px;
+
+    color:
+        rgba(239, 168, 180, .32);
+
+    animation:
+        heartFloat
+        linear
+        forwards;
+}
+
+@keyframes heartFloat {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(0)
+            rotate(0);
+    }
+
+    20% {
+        opacity: .75;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-110vh)
+            rotate(320deg);
+    }
+}
+
+
+/* =========================================================
+   СТАРТОВАЯ СТРАНИЦА
+========================================================= */
+
+.start-card {
+    text-align:
+        center;
+}
+
+.start-card h1 {
+    margin:
+        8px 0
+        0;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-weight:
+        400;
+
+    font-size:
+        clamp(78px, 14vw, 150px);
+
+    line-height:
+        .85;
+
+    color:
+        #f7dfe3;
+
+    text-shadow:
+        0 12px 30px
+        rgba(0,0,0,.35);
+}
+
+.title-heart {
+    margin:
+        16px 0;
+
+    color:
+        var(--pink-light);
+
+    font-size:
+        37px;
+}
+
+.start-card h2 {
+    margin:
+        0;
+
+    font-size:
+        clamp(34px, 6vw, 54px);
+
+    font-weight:
+        500;
+}
+
+.lead {
+    margin-top:
+        10px;
+
+    color:
+        #e7d0d3;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.8;
+}
+
+.start-actions {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    flex-wrap:
+        wrap;
+
+    margin:
+        27px 0;
+}
+
+.warning {
+    max-width:
+        720px;
+
+    margin:
+        auto;
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.8;
+}
+
+
+/* =========================================================
+   ЗАГОЛОВКИ
+========================================================= */
+
+.stage-heading {
+    text-align:
+        center;
+
+    margin:
+        0 auto
+        30px;
+}
+
+.stage-title {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+}
+
+.stage-title span {
+    color:
+        var(--pink-light);
+
+    font-size:
+        24px;
+}
+
+.stage-title h2 {
+    margin:
+        0;
+
+    font-size:
+        clamp(38px, 6vw, 63px);
+
+    font-weight:
+        500;
+}
+
+.stage-heading > p {
+    margin:
+        9px auto 0;
+
+    max-width:
+        700px;
+
+    color:
+        rgba(248,232,234,.64);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   КНИГА
+========================================================= */
+
+.book-area {
+    width:
+        min(1080px,100%);
+
+    margin:
+        0 auto;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+}
+
+.book {
+    flex:
+        1;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        11px;
+
+    box-shadow:
+        0 34px 85px
+        rgba(0,0,0,.56);
+}
+
+.book-page {
+    position:
+        relative;
+
+    min-height:
+        540px;
+
+    padding:
+        53px;
+
+    color:
+        var(--paper-text);
+
+    background:
+        radial-gradient(
+            circle at 12% 16%,
+            rgba(255,255,255,.55),
+            transparent 28%
+        ),
+
+        linear-gradient(
+            135deg,
+            var(--paper),
+            var(--paper-dark)
+        );
+}
+
+.book-page-left {
+    border-right:
+        1px solid
+        rgba(83,58,60,.18);
+}
+
+.book-page-right {
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dfc5b2,
+            #b99c8d
+        );
+}
+
+.page-heart {
+    position:
+        absolute;
+
+    top:
+        22px;
+
+    left:
+        26px;
+
+    color:
+        #ba6171;
+
+    font-size:
+        29px;
+}
+
+.page-heart-bottom {
+    top:
+        auto;
+
+    left:
+        auto;
+
+    right:
+        23px;
+
+    bottom:
+        19px;
+}
+
+.clue-label {
+    text-align:
+        center;
+
+    color:
+        #975662;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .28em;
+}
+
+.book-page h3 {
+    margin:
+        14px 0;
+
+    text-align:
+        center;
+
+    font-size:
+        40px;
+
+    font-weight:
+        600;
+}
+
+.clue-text {
+    margin:
+        0;
+
+    text-align:
+        center;
+
+    color:
+        #71585a;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.8;
+}
+
+.answer-area {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+
+    margin-top:
+        31px;
+}
+
+.answer-input {
+    width:
+        100%;
+
+    padding:
+        14px 18px;
+
+    border:
+        1px solid
+        rgba(147,87,97,.35);
+
+    border-radius:
+        999px;
+
+    outline:
+        none;
+
+    color:
+        #50383a;
+
+    background:
+        rgba(255,255,255,.58);
+}
+
+.answer-input:focus {
+    border-color:
+        #bd6d7d;
+
+    box-shadow:
+        0 0 18px
+        rgba(189,109,125,.16);
+}
+
+.button-book {
+    border:
+        none;
+
+    color:
+        white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d67e8d,
+            #a95563
+        );
+}
+
+.answer-message {
+    min-height:
+        20px;
+
+    text-align:
+        center;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        13px;
+}
+
+.book-decoration {
+    max-width:
+        310px;
+}
+
+.flower {
+    color:
+        #a55d69;
+
+    opacity:
+        .73;
+
+    font-size:
+        69px;
+}
+
+.book-big-heart {
+    color:
+        #b96576;
+
+    opacity:
+        .58;
+
+    font-size:
+        92px;
+}
+
+#bookQuote {
+    margin:
+        9px auto 0;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size:
+        31px;
+
+    line-height:
+        1.25;
+
+    color:
+        #68494d;
+}
+
+.page-number {
+    position:
+        absolute;
+
+    right:
+        23px;
+
+    bottom:
+        18px;
+
+    color:
+        rgba(82,60,61,.56);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        12px;
+}
+
+.round-button {
+    flex:
+        0 0 auto;
+
+    width:
+        46px;
+
+    height:
+        46px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.26);
+
+    border-radius:
+        50%;
+
+    color:
+        white;
+
+    background:
+        rgba(30,20,26,.64);
+
+    font-size:
+        31px;
+
+    transition:
+        background .2s,
+        transform .2s;
+}
+
+.round-button:hover {
+    background:
+        rgba(125,60,72,.72);
+
+    transform:
+        scale(1.04);
+}
+
+.clue-dots {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        8px;
+
+    margin-top:
+        22px;
+}
+
+.clue-dot {
+    width:
+        34px;
+
+    height:
+        34px;
+
+    border:
+        1px solid
+        rgba(239,181,190,.32);
+
+    border-radius:
+        50%;
+
+    color:
+        white;
+
+    background:
+        rgba(30,20,26,.62);
+
+    transition:
+        .2s;
+}
+
+.clue-dot.active {
+    background:
+        var(--pink);
+
+    transform:
+        scale(1.07);
+}
+
+.clue-dot.locked {
+    opacity:
+        .27;
+}
+
+
+/* =========================================================
+   ВОСПОМИНАНИЯ / СВАЙПЕР
+========================================================= */
+
+.memory-slider {
+    width:
+        min(900px, 100%);
+
+    margin:
+        0 auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        46px minmax(0, 1fr) 46px;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+}
+
+.photo-viewport {
+    width:
+        100%;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        20px;
+
+    touch-action:
+        pan-y;
+}
+
+.photo-track {
+    display:
+        flex;
+
+    width:
+        100%;
+
+    transition:
+        transform .55s
+        cubic-bezier(.22,.61,.36,1);
+
+    will-change:
+        transform;
+}
+
+.memory-card {
+    position:
+        relative;
+
+    flex:
+        0 0 100%;
+
+    width:
+        100%;
+
+    opacity:
+        1;
+
+    filter:
+        none;
+
+    transform:
+        none;
+
+    transition:
+        none;
+}
+
+.memory-card img {
+    display:
+        block;
+
+    width:
+        100%;
+
+    aspect-ratio:
+        16 / 10;
+
+    object-fit:
+        cover;
+
+    border:
+        1px solid
+        rgba(239,181,190,.48);
+
+    border-radius:
+        18px;
+
+    background:
+        #3a2a30;
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,.50);
+
+    user-select:
+        none;
+}
+
+.memory-caption {
+    position:
+        absolute;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    bottom:
+        0;
+
+    padding:
+        55px 14px
+        15px;
+
+    border-radius:
+        0 0
+        18px
+        18px;
+
+    color:
+        #fff;
+
+    text-align:
+        center;
+
+    font-size:
+        21px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(15,9,12,.90)
+        );
+}
+
+.memory-caption span {
+    color:
+        var(--pink-light);
+}
+
+.photo-dots {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        7px;
+
+    margin-top:
+        18px;
+}
+
+.photo-dot {
+    width:
+        8px;
+
+    height:
+        8px;
+
+    padding:
+        0;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,.26);
+}
+
+.photo-dot.active {
+    background:
+        var(--pink-light);
+
+    transform:
+        scale(1.25);
+}
+
+.memories-continue {
+    text-align:
+        center;
+
+    margin-top:
+        20px;
+}
+
+.memories-continue p {
+    margin:
+        0 0 12px;
+
+    color:
+        var(--muted);
+}
+
+
+/* =========================================================
+   КАЛЕНДАРЬ
+========================================================= */
+
+.calendar-layout {
+    width:
+        min(960px,100%);
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        24px;
+}
+
+.calendar-card,
+.date-preview {
+    padding:
+        28px;
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius:
+        24px;
+
+    background:
+        rgba(37,24,30,.72);
+
+    backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+.calendar-header {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        20px;
+}
+
+.calendar-header h3 {
+    margin:
+        0;
+
+    font-size:
+        28px;
+
+    font-weight:
+        500;
+}
+
+.calendar-arrow {
+    width:
+        40px;
+
+    height:
+        40px;
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius:
+        50%;
+
+    color:
+        white;
+
+    background:
+        rgba(255,255,255,.05);
+
+    font-size:
+        25px;
+}
+
+.weekdays,
+.calendar-days {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap:
+        7px;
+}
+
+.weekdays {
+    margin-bottom:
+        7px;
+
+    color:
+        #ceb4b8;
+
+    text-align:
+        center;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        10px;
+}
+
+.empty-day,
+.calendar-day {
+    min-height:
+        43px;
+}
+
+.calendar-day {
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    color:
+        #f3e0e2;
+
+    background:
+        rgba(255,255,255,.05);
+
+    transition:
+        .2s;
+}
+
+.calendar-day:hover {
+    background:
+        rgba(217,133,148,.28);
+}
+
+.calendar-day.selected {
+    color:
+        white;
+
+    background:
+        var(--pink);
+
+    transform:
+        scale(1.05);
+
+    box-shadow:
+        0 8px 20px
+        rgba(217,133,148,.34);
+}
+
+.date-preview {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+}
+
+.date-heart {
+    color:
+        var(--pink-light);
+
+    font-size:
+        64px;
+}
+
+.date-preview > span {
+    color:
+        var(--muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        12px;
+}
+
+.date-preview h3 {
+    margin:
+        11px 0 26px;
+
+    font-size:
+        33px;
+
+    font-weight:
+        500;
+}
+
+.date-preview small {
+    max-width:
+        290px;
+
+    margin-top:
+        14px;
+
+    color:
+        rgba(255,255,255,.42);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.6;
+}
+
+
+/* =========================================================
+   БИЛЕТ
+========================================================= */
+
+.ticket {
+    width:
+        min(1050px,100%);
+
+    margin:
+        0 auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 125px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        12px;
+
+    color:
+        #533c3e;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5e2d7,
+            #dfc3af
+        );
+
+    box-shadow:
+        0 30px
+        82px
+        rgba(0,0,0,.56);
+}
+
+.ticket-main {
+    padding:
+        55px
+        60px;
+}
+
+.ticket-label {
+    color:
+        #93616a;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .3em;
+}
+
+.ticket h2 {
+    margin:
+        10px 0;
+
+    font-size:
+        clamp(40px,6vw,67px);
+
+    font-weight:
+        600;
+}
+
+.ticket-divider {
+    height:
+        1px;
+
+    margin:
+        19px 0;
+
+    background:
+        rgba(84,59,59,.23);
+}
+
+.ticket-for {
+    margin:
+        0;
+
+    font-size:
+        23px;
+}
+
+.ticket-for span {
+    color:
+        #be6675;
+}
+
+.ticket-date {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    margin-top:
+        23px;
+}
+
+.ticket-date span {
+    color:
+        #88656a;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        12px;
+}
+
+.ticket-date strong {
+    font-size:
+        28px;
+}
+
+.ticket-text {
+    max-width:
+        720px;
+
+    margin-top:
+        24px;
+
+    font-size:
+        20px;
+
+    line-height:
+        1.55;
+}
+
+.ticket-signature {
+    margin-top:
+        28px;
+
+    text-align:
+        right;
+
+    color:
+        #87515b;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size:
+        31px;
+}
+
+.ticket-side {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        22px 12px;
+
+    border-left:
+        2px dashed
+        rgba(82,55,55,.30);
+}
+
+.ticket-side-heart {
+    color:
+        #c16473;
+
+    font-size:
+        68px;
+}
+
+.ticket-barcode {
+    display:
+        flex;
+
+    align-items:
+        stretch;
+
+    gap:
+        4px;
+
+    height:
+        165px;
+}
+
+.ticket-barcode span {
+    display:
+        block;
+
+    width:
+        4px;
+
+    background:
+        #5e4144;
+}
+
+.ticket-barcode span:nth-child(2n) {
+    width:
+        7px;
+}
+
+.ticket-side-label {
+    color:
+        #6b4d50;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .2em;
+
+    writing-mode:
+        vertical-rl;
+}
+
+.ticket-actions {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    flex-wrap:
+        wrap;
+
+    margin-top:
+        24px;
+}
+
+
+/* =========================================================
+   ФИНАЛ
+========================================================= */
+
+.final-card {
+    max-width:
+        720px;
+
+    text-align:
+        center;
+}
+
+.final-heart {
+    color:
+        var(--pink-light);
+
+    font-size:
+        76px;
+}
+
+.final-card h2 {
+    margin:
+        8px 0;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size:
+        clamp(52px,9vw,88px);
+
+    font-weight:
+        400;
+}
+
+.final-card p {
+    color:
+        #e3c9cd;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.8;
+}
+
+.final-divider {
+    width:
+        78px;
+
+    height:
+        1px;
+
+    margin:
+        28px auto;
+
+    background:
+        var(--pink);
+}
+
+.final-signature {
+    margin-top:
+        24px;
+
+    color:
+        var(--pink-light);
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size:
+        31px;
+}
+
+
+/* =========================================================
+   ПЕРЕХОД
+========================================================= */
+
+.screen-transition {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        200;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    visibility:
+        hidden;
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+        rgba(21,13,18,.94);
+
+    transition:
+        opacity .28s ease,
+        visibility .28s ease;
+}
+
+.screen-transition.show {
+    visibility:
+        visible;
+
+    opacity:
+        1;
+}
+
+.screen-transition div {
+    color:
+        var(--pink-light);
+
+    font-size:
+        64px;
+
+    animation:
+        pulseHeart
+        .65s
+        infinite
+        alternate;
+}
+
+@keyframes pulseHeart {
+    to {
+        transform:
+            scale(1.10);
+    }
+}
+
+
+/* =========================================================
+   PHOTO MODAL
+========================================================= */
+
+.photo-modal {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        300;
+
+    display:
+        none;
+
+    place-items:
+        center;
+
+    padding:
+        20px;
+
+    background:
+        rgba(8,4,7,.92);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.photo-modal.open {
+    display:
+        grid;
+}
+
+.photo-modal img {
+    max-width:
+        94vw;
+
+    max-height:
+        88vh;
+
+    object-fit:
+        contain;
+
+    border-radius:
+        15px;
+
+    box-shadow:
+        0 30px 90px
+        rgba(0,0,0,.7);
+}
+
+.photo-modal button {
+    position:
+        absolute;
+
+    top:
+        18px;
+
+    right:
+        18px;
+
+    width:
+        44px;
+
+    height:
+        44px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius:
+        50%;
+
+    color:
+        white;
+
+    background:
+        rgba(0,0,0,.35);
+
+    font-size:
+        30px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position:
+        fixed;
+
+    left:
+        50%;
+
+    bottom:
+        22px;
+
+    z-index:
+        400;
+
+    padding:
+        11px
+        17px;
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius:
+        999px;
+
+    color:
+        white;
+
+    background:
+        rgba(27,18,23,.95);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        12px;
+
+    transform:
+        translate(-50%, 22px);
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        .3s ease;
+}
+
+.toast.show {
+    opacity:
+        1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .book {
+        grid-template-columns:
+            1fr;
+    }
+
+    .book-page-right {
+        min-height:
+            260px;
+    }
+
+    .calendar-layout {
+        grid-template-columns:
+            1fr;
+    }
+
+    .memory-card {
+        flex-basis:
+            100%;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .screen {
+        padding:
+            74px
+            10px
+            34px;
+    }
+
+    .glass-card {
+        padding:
+            42px
+            18px;
+
+        border-radius:
+            20px;
+    }
+
+    .book-page {
+        min-height:
+            455px;
+
+        padding:
+            43px
+            21px;
+    }
+
+    .book-page h3 {
+        font-size:
+            34px;
+    }
+
+    .book-area {
+        position:
+            relative;
+    }
+
+    .book-navigation {
+        position:
+            absolute;
+
+        top:
+            50%;
+
+        z-index:
+            5;
+
+        transform:
+            translateY(-50%);
+    }
+
+    .book-navigation.previous {
+        left:
+            4px;
+    }
+
+    .book-navigation.next {
+        right:
+            4px;
+    }
+
+    .book-page-right {
+        min-height:
+            225px;
+    }
+
+    .memory-card {
+        flex-basis:
+            100%;
+    }
+
+    .memory-caption {
+        font-size:
+            17px;
+    }
+
+    .memory-slider {
+        grid-template-columns:
+            38px minmax(0, 1fr) 38px;
+
+        gap:
+            6px;
+    }
+
+    .calendar-card,
+    .date-preview {
+        padding:
+            20px
+            11px;
+    }
+
+    .calendar-day,
+    .empty-day {
+        min-height:
+            38px;
+    }
+
+    .ticket {
+        grid-template-columns:
+            1fr;
+    }
+
+    .ticket-side {
+        display:
+            none;
+    }
+
+    .ticket-main {
+        padding:
+            35px
+            22px;
+    }
+
+    .ticket-actions {
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+    }
+
+    .ticket-actions .button {
+        width:
+            230px;
+    }
+}

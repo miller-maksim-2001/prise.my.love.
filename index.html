@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Мой маленький сюрприз ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Фоновая фотография -->
+    <div class="site-background" aria-hidden="true"></div>
+
+    <!-- Затемнение фона -->
+    <div class="site-overlay" aria-hidden="true"></div>
+
+    <!-- Музыка -->
+<!-- Декоративные сердечки -->
+    <div id="heartLayer" class="heart-layer" aria-hidden="true"></div>
+
+    <!-- =====================================================
+         ОСНОВНОЕ ПРИЛОЖЕНИЕ
+         Только один этап виден одновременно.
+    ====================================================== -->
+
+    <main id="app">
+
+        <!-- =================================================
+             СТАРТ
+        ================================================== -->
+
+        <section
+            id="startScreen"
+            class="screen start-screen"
+        >
+            <div class="glass-card start-card">
+
+                <div class="eyebrow">
+                    М А Л Е Н Ь К И Й
+                </div>
+
+                <h1>
+                    Сюрприз
+                </h1>
+
+                <div class="title-heart">
+                    ♡
+                </div>
+
+                <h2>
+                    Привет, любимая!
+                </h2>
+
+                <p class="lead">
+                    Я рад, что ты согласилась на этот сюрприз 😊
+                    <br>
+                    Продолжаем?
+                </p>
+
+                <div class="start-actions">
+
+                    <button
+                        id="yesButton"
+                        class="button button-primary"
+                        type="button"
+                    >
+                        Да 😍
+                    </button>
+
+                    <button
+                        id="noButton"
+                        class="button button-secondary"
+                        type="button"
+                    >
+                        Нет 😢
+                    </button>
+
+                </div>
+
+                <p class="warning">
+                    Заранее хочу предупредить: это может занять немного времени.
+                    Я буду очень рад, если ты сможешь пройти весь этот мини-квест.
+                    Если будут вопросы, ты можешь спрашивать у меня.
+                    Если у тебя нет желания его проходить, не переживай — я пойму 😊
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- =================================================
+             КНИГА
+        ================================================== -->
+
+        <section
+            id="bookScreen"
+            class="screen book-screen is-hidden"
+        >
+            <div class="stage-heading">
+
+                <div class="stage-title">
+                    <span>♡</span>
+                    <h2>Наши подсказки</h2>
+                    <span>♡</span>
+                </div>
+
+                <p>
+                    Ответь на вопрос из конверта, чтобы открыть следующую страницу.
+                </p>
+
+            </div>
+
+
+            <div class="book-area">
+
+                <button
+                    id="previousClue"
+                    class="round-button book-navigation previous"
+                    type="button"
+                    aria-label="Предыдущая подсказка"
+                >
+                    ‹
+                </button>
+
+
+                <div class="book">
+
+                    <!-- Левая страница -->
+                    <div class="book-page book-page-left">
+
+                        <div class="page-heart page-heart-top">
+                            ♡
+                        </div>
+
+                        <div class="clue-label">
+                            ПОДСКАЗКА
+                            <span id="clueNumber">
+                                1
+                            </span>
+                            / 6
+                        </div>
+
+                        <h3 id="clueTitle">
+                            Подсказка №1
+                        </h3>
+
+                        <p
+                            id="clueText"
+                            class="clue-text"
+                        ></p>
+
+
+                        <div class="answer-area">
+
+                            <input
+                                id="answerInput"
+                                class="answer-input"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Введи ответ из конверта..."
+                            >
+
+                            <button
+                                id="checkAnswerButton"
+                                class="button button-book"
+                                type="button"
+                            >
+                                Проверить ♡
+                            </button>
+
+                            <div
+                                id="answerMessage"
+                                class="answer-message"
+                                aria-live="polite"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="page-heart page-heart-bottom">
+                            ♡
+                        </div>
+
+                    </div>
+
+
+                    <!-- Правая страница -->
+                    <div class="book-page book-page-right">
+
+                        <div class="book-decoration">
+
+                            <div class="flower">
+                                ✿
+                            </div>
+
+                            <div class="book-big-heart">
+                                ♡
+                            </div>
+
+                            <p id="bookQuote">
+                                «Иногда самые простые вещи
+                                делают нас самыми счастливыми»
+                            </p>
+
+                        </div>
+
+                        <div class="page-number">
+                            <span id="currentPage">
+                                1
+                            </span>
+                            /
+                            6
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="nextClue"
+                    class="round-button book-navigation next"
+                    type="button"
+                    aria-label="Следующая подсказка"
+                >
+                    ›
+                </button>
+
+            </div>
+
+
+            <div
+                id="clueDots"
+                class="clue-dots"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             ВОСПОМИНАНИЯ
+        ================================================== -->
+
+        <section
+            id="memoriesScreen"
+            class="screen memories-screen is-hidden"
+        >
+
+            <div class="stage-heading">
+
+                <div class="stage-title">
+                    <span>♡</span>
+                    <h2>Наши воспоминания</h2>
+                    <span>♡</span>
+                </div>
+
+                <p>
+                    Каждая фотография — маленькая часть нашей истории.
+                </p>
+
+            </div>
+
+
+            <div class="memory-slider">
+
+                <button
+                    id="previousPhoto"
+                    class="round-button"
+                    type="button"
+                    aria-label="Предыдущая фотография"
+                >
+                    ‹
+                </button>
+
+
+                <div
+                    id="photoViewport"
+                    class="photo-viewport"
+                >
+                    <div
+                        id="photoTrack"
+                        class="photo-track"
+                    ></div>
+                </div>
+
+
+                <button
+                    id="nextPhoto"
+                    class="round-button"
+                    type="button"
+                    aria-label="Следующая фотография"
+                >
+                    ›
+                </button>
+
+            </div>
+
+
+            <div
+                id="photoDots"
+                class="photo-dots"
+            ></div>
+
+
+            <div class="memories-continue">
+
+                <p>
+                    Но это ещё не всё... ♡
+                </p>
+
+                <button
+                    id="continueButton"
+                    class="button button-primary"
+                    type="button"
+                >
+                    Продолжить
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             КАЛЕНДАРЬ
+        ================================================== -->
+
+        <section
+            id="calendarScreen"
+            class="screen calendar-screen is-hidden"
+        >
+
+            <div class="stage-heading">
+
+                <div class="stage-title">
+                    <span>♡</span>
+                    <h2>Давай выберем день</h2>
+                    <span>♡</span>
+                </div>
+
+                <p>
+                    Давай выберем день, когда мы сможем провести его незабываемо.
+                </p>
+
+            </div>
+
+
+            <div class="calendar-layout">
+
+                <div class="calendar-card">
+
+                    <div class="calendar-header">
+
+                        <button
+                            id="previousMonth"
+                            class="calendar-arrow"
+                            type="button"
+                            aria-label="Предыдущий месяц"
+                        >
+                            ‹
+                        </button>
+
+                        <h3>
+                            Октябрь 2026
+                        </h3>
+
+                        <button
+                            id="nextMonth"
+                            class="calendar-arrow"
+                            type="button"
+                            aria-label="Следующий месяц"
+                        >
+                            ›
+                        </button>
+
+                    </div>
+
+
+                    <div class="weekdays">
+
+                        <span>Пн</span>
+                        <span>Вт</span>
+                        <span>Ср</span>
+                        <span>Чт</span>
+                        <span>Пт</span>
+                        <span>Сб</span>
+                        <span>Вс</span>
+
+                    </div>
+
+
+                    <div
+                        id="calendarDays"
+                        class="calendar-days"
+                    ></div>
+
+                </div>
+
+
+                <div class="date-preview">
+
+                    <div class="date-heart">
+                        ♡
+                    </div>
+
+                    <span>
+                        Выбранный день
+                    </span>
+
+                    <h3 id="selectedDate">
+                        Выберите дату
+                    </h3>
+
+                    <button
+                        id="createTicketButton"
+                        class="button button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Создать билет
+                    </button>
+
+                    <small>
+                        Можно выбрать любой день октября 2026 года.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             БИЛЕТ
+        ================================================== -->
+
+        <section
+            id="ticketScreen"
+            class="screen ticket-screen is-hidden"
+        >
+
+            <div class="stage-heading">
+
+                <div class="stage-title">
+                    <span>♡</span>
+                    <h2>Твой билет готов</h2>
+                    <span>♡</span>
+                </div>
+
+            </div>
+
+
+            <div
+                id="ticketCard"
+                class="ticket"
+            >
+
+                <div class="ticket-main">
+
+                    <div class="ticket-label">
+                        ОСОБЕННЫЙ ДЕНЬ
+                    </div>
+
+                    <h2>
+                        БИЛЕТ НА СВИДАНИЕ
+                    </h2>
+
+                    <div class="ticket-divider"></div>
+
+                    <p class="ticket-for">
+                        Для моей любимой Янулечки
+                        <span>♡</span>
+                    </p>
+
+                    <div class="ticket-date">
+
+                        <span>
+                            Дата:
+                        </span>
+
+                        <strong id="ticketDate">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <p class="ticket-text">
+                        «Этот день я хочу провести с тобой,
+                        погулять, посидеть в кофе или парке,
+                        посмеяться с шуток и просто побыть рядом»
+                    </p>
+
+                    <p class="ticket-signature">
+                        С любовью, Максим ❤️
+                    </p>
+
+                </div>
+
+
+                <div class="ticket-side">
+
+                    <div class="ticket-side-heart">
+                        ♥
+                    </div>
+
+                    <div class="ticket-barcode">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="ticket-side-label">
+                        СВИДАНИЕ
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="ticket-actions">
+
+                <button
+                    id="downloadTicketButton"
+                    class="button button-primary"
+                    type="button"
+                >
+                    ↓ Скачать билет
+                </button>
+
+                <button
+                    id="shareTicketButton"
+                    class="button button-secondary"
+                    type="button"
+                >
+                    Поделиться ♡
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ФИНАЛ
+        ================================================== -->
+
+        <section
+            id="finalScreen"
+            class="screen final-screen is-hidden"
+        >
+
+            <div class="glass-card final-card">
+
+                <div class="final-heart">
+                    ♥
+                </div>
+
+                <div class="eyebrow">
+                    КВЕСТ ПРОЙДЕН
+                </div>
+
+                <h2>
+                    Ты прошла весь путь!
+                </h2>
+
+                <p>
+                    Спасибо, что прошла его вместе со мной.
+                    <br>
+                    Надеюсь, этот маленький сюрприз
+                    подарит тебе улыбку ❤️
+                </p>
+
+                <div class="final-divider"></div>
+
+                <p>
+                    Я хочу создавать с тобой
+                    ещё больше воспоминаний.
+                </p>
+
+                <div class="final-signature">
+                    С любовью, Максим
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Переход между этапами -->
+    <div
+        id="screenTransition"
+        class="screen-transition"
+        aria-hidden="true"
+    >
+        <div>♥</div>
+    </div>
+
+
+    <!-- Просмотр фото -->
+    <div
+        id="photoModal"
+        class="photo-modal"
+        aria-hidden="true"
+    >
+        <button
+            id="closePhotoModal"
+            type="button"
+            aria-label="Закрыть фотографию"
+        >
+            ×
+        </button>
+
+        <img
+            id="modalImage"
+            src=""
+            alt="Увеличенная фотография"
+        >
+    </div>
+
+
+    <!-- Уведомления -->
+    <div
+        id="toast"
+        class="toast"
+        aria-live="polite"
+    ></div>
+
+
+    <script src="skript.js"></script>
+
+</body>
+</html>
